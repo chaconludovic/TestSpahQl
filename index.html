@@ -1,0 +1,19 @@
+<html>
+<header>
+    <script type="text/javascript" src="assets/js/spahql/spahql.js"></script>
+    <script src="assets/js/jquery/jquery-3.0.0.js"></script>
+</header>
+<body>
+<script>
+    $.getJSON("data/data.json", function (json) {
+        var db = SpahQL.db(json);
+        var valeurs = db.select("/children/*/prospectives/*/valeursVariables/*/valeurAnnuelles/*/valeur");
+        $.each(valeurs, function (index, value) {
+            db.select(value.path).replace(Math.round(Math.random() * 1000000));
+        });
+        console.log(JSON.stringify(db.value()));
+    });
+
+</script>
+</body>
+</html>
